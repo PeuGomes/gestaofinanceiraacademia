@@ -15,7 +15,7 @@ import java.util.Optional;
 @Controller
 @RequestMapping("/admin")
 public class AdminExcluir {
-
+    //Responsavel por Excluir o cliente.
     @Autowired
     private ClienteRepository clienteRepository;
 
