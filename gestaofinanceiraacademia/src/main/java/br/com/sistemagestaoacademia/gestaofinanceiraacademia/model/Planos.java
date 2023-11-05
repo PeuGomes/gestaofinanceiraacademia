@@ -9,6 +9,7 @@ import jakarta.persistence.*;
 @Entity
 public class Planos {
 
+    //Entidade Planos
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
