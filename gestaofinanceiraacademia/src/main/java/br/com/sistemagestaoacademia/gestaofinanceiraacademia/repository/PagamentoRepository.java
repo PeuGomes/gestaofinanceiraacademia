@@ -9,6 +9,7 @@ import java.util.List;
 
 @Repository
 public interface PagamentoRepository extends JpaRepository<Pagamento, Long> {
+    //Repository Pagamento
 
     List<Pagamento> findByClienteId(Long clienteId);
 
