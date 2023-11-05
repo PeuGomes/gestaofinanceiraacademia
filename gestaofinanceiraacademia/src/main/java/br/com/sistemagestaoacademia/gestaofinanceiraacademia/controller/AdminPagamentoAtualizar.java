@@ -44,7 +44,7 @@ public class AdminPagamentoAtualizar {
             model.addAttribute("clientes", clienteRepository.findAll());
             return "admin/atualizarPagamento";
         } else {
-            // Trate a situação em que o pagamento não é encontrado
+            // redirecionamento.
             return "redirect:/admin/pagamentos";
         }
     }
