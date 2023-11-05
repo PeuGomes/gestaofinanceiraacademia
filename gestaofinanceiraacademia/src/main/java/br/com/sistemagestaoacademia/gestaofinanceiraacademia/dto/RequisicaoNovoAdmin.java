@@ -7,6 +7,7 @@ import io.micrometer.common.lang.NonNull;
  * Created on ${DATE}.
  */
 public class RequisicaoNovoAdmin {
+    //Dto de requisicaoNovoAdmin
     private Long id;
     @NonNull
     private String nome;
