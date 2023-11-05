@@ -10,7 +10,7 @@ import jakarta.persistence.Id;
  */
 @Entity
 public class Modalidades {
-
+    //Entidade Modalidades
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
