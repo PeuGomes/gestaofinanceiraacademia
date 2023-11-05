@@ -11,6 +11,7 @@ import java.util.Optional;
  */
 @Repository
 public interface AdminRepository extends JpaRepository<Admin, Long> {
+    //Repository Admin
     Optional<Admin> findByNomeAndSenha(String nome, String senha);
 
 
