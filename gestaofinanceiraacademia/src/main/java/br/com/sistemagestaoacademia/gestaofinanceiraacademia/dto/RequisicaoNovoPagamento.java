@@ -7,6 +7,7 @@ import java.time.LocalDate;
 
 public class RequisicaoNovoPagamento {
 
+    //Dto de requisicaoNovoPagamento
     private double valor;
     private LocalDate vencimento;
     private LocalDate dataPagamento;
