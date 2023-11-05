@@ -12,6 +12,7 @@ import io.micrometer.common.lang.NonNull;
  */
 
 public class RequisicaoNovaModalidade {
+    //Dto de requisicaoNovaModalidade
 
     private Long id;
     @NonNull
