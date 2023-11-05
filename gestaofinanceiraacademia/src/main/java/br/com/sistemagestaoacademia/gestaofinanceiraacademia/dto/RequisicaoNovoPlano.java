@@ -9,6 +9,7 @@ import br.com.sistemagestaoacademia.gestaofinanceiraacademia.model.Planos;
  */
 public class RequisicaoNovoPlano {
 
+    //Dto de requisicaoNovoPlano
     private Long id;
     private Double valor;
 
