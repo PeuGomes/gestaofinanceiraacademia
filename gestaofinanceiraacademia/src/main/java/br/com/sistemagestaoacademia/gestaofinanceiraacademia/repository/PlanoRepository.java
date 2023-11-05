@@ -12,4 +12,5 @@ import java.util.Optional;
 @Repository
 public interface PlanoRepository extends JpaRepository<Planos, Long> {
 
+    //Repository Plano
 }
