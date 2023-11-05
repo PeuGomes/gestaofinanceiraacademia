@@ -12,6 +12,7 @@ import jakarta.persistence.Id;
 @Entity
 public class Admin {
 
+    //Entidade Admin
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
