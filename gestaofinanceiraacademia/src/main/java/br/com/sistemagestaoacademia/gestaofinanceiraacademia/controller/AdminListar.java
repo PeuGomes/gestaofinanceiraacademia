@@ -18,7 +18,7 @@ import java.util.List;
 @Controller
 @RequestMapping("/admin")
 public class AdminListar {
-
+    //Controller para listar os clientes.
     @Autowired
     private ClienteRepository clienteRepository;
     @Autowired
