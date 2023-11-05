@@ -48,6 +48,7 @@
 </head>
 
 <body>
+<!-- Thymeleaf para o acesso pelo o admin -->
 <div th:if="${not #strings.isEmpty(error)}" class="alert alert-danger">
 	<p th:text="${error}"></p>
 </div>
