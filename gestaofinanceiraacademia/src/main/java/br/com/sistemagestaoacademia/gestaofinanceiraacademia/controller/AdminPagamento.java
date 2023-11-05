@@ -97,7 +97,7 @@ public class AdminPagamento {
             }
             model.addAttribute("clientes", clientes);
 
-            // Adiciona a lista de pagamentos ao modelo
+            // Adiciona a lista de pagamentos ao modelo.
             List<Pagamento> pagamentos = pagamentoRepository.findAll();
             model.addAttribute("pagamentos", pagamentos);
 
