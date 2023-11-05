@@ -45,7 +45,7 @@ public class Cadastrar {
 	@GetMapping("formulario")
 	public String formulario(Model model) {
 		model.addAttribute("requisicaoCliente", new RequisicaoNovoCliente());
-		// Adicione a lista de planos ao modelo
+		// Adicione a lista de planos ao modelo.
 		List<Planos> planos = planoRepository.findAll();
 		model.addAttribute("planos", planos);
 		return "clientes/formulario";
