@@ -1,0 +1,21 @@
+<!-- listaClientesAdmin.html -->
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Lista de Clientes - Admin</title>
+</head>
+<body>
+<h2>Lista de Clientes - Admin</h2>
+<!-- Adicione a lógica para exibir a lista de clientes -->
+<ul>
+  <li th:each="cliente : ${clientes}">
+    <span th:text="${cliente.nome}"></span>
+    <!-- Adicione outros campos conforme necessário -->
+    <td><a th:href="@{'/admin/clientes/editar?cpf=' + ${cliente.cpf}}">Editar</a></td>
+
+  </li>
+</ul>
+</body>
+</html>

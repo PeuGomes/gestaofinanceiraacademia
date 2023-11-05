@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Academia Hardcore</title>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Academia HardCore</title>
+
+    <!-- Bootstrap CSS 4.0.0 -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Seu CSS personalizado -->
+    <link th:href="@{/css/nav.css}" rel="stylesheet" type="text/css">
+    <link th:href="@{/css/custom.css}" rel="stylesheet" type="text/css">
+
+</head>
+<body>
+
+<!-- Cabeçalho personalizado -->
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <div class="container">
+        <a class="navbar-brand" href="#">
+            <img th:src="@{/images/logo.svg}" alt="logo" class="img-fluid">
+        </a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Início</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/clientes/formulario">Cadastrar</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#planos">Planos</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+<!-- Seção Slider -->
+<section class="slider">
+    <!-- Slide 1 -->
+    <div class="hero-section bg-1" th:style="'background-image: url(' + @{/images/background.jpg} + '); background-size: cover; background-position: center center; height: 100vh;'">
+        <!-- Conteúdo do slide 1 -->
+        <div class="container" style="padding-top: 240px;">
+            <h1 style="font-size: 4rem; color: white; margin-top: 0;">Bem vindo a HardCore!</h1>
+            <p style="font-size: 2rem; color: white; margin-top: 10px;">Bem-vindo à Academia Hardcore! Estamos empolgados por tê-lo aqui. Nossa missão é ajudar você a atingir seus objetivos de condicionamento físico de maneira divertida, desafiadora e motivadora</p>
+            <a href="#nossa-academia" class="btn btn-danger mt-5">Saiba mais</a>
+        </div>
+    </div>
+    <!-- Slide 2 -->
+    <div class="hero-section bg-1" th:style="'background-image: url(' + @{/images/background-2.jpg} + '); background-size: cover; background-position: center center; height: 100vh;'">
+        <!-- Conteúdo do slide 2 -->
+        <div class="container" style="padding-top: 240px;">
+            <h1 style="font-size: 4rem; color: white; margin-top: 0;">Nossa academia é referência em todo o país</h1>
+            <p style="font-size: 2rem; color: white; margin-top: 10px;">Visite nossa academia no Rio de Janeiro</p>
+            <a href="#mapa" class="btn btn-danger mt-5">Nossas unidades</a>
+        </div>
+    </div>
+</section>
+
+<!-- Seção Nossa Academia -->
+<section id="nossa-academia" style="background-color: #1f272d; color: white; padding: 30px;">
+    <!-- Conteúdo da seção Nossa Academia -->
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-6 col-md-12">
+                <div class="imagem-aluno">
+                    <img th:src="@{/images/aluno.jpg}" alt="aluno" style="max-width: 100%; height: auto;">
+                </div>
+            </div>
+            <div class="col-lg-6 col-md-12">
+                <div class="textos" style="text-align: left; color: white; padding-left: 30px; padding-right: 20px; margin-top: 10px;">
+                    <h2 style="margin: 0; text-align: left;">Nossa Academia</h2>
+                    <p style="margin-top: 5px; text-align: left;">Instrutores altamente qualificados e dedicados.
+                        Equipamentos de última geração e instalações modernas.
+                        Aulas e programas para todos os níveis de condicionamento físico.
+                        Compromisso com sua jornada de saúde e bem-estar.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<!-- Seção Faça Parte -->
+<section class="faca-parte" style="background-color: #1f272d; color: white; padding: 30px 0;">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-md-6">
+                <div class="conteudo-faca-parte">
+                    <h2>Faça parte do time</h2>
+                    <p>Junte-se a nós e experimente a diferença que a Academia Hardcore pode fazer em sua vida.</p>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="atleta-img mt-1">
+                    <img th:src="@{/images/atleta.png}" alt="atleta" style="max-width: 100%; height: auto;">
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<!-- Seção Planos -->
+<section class="planos" id="planos" style="background-image: url('/images/bg-planos.jpg'); background-size: cover; background-position: center center;">
+    <!-- Conteúdo da seção Planos -->
+    <div class="container">
+        <h2 style="color: white;">Nossos Planos</h2>
+        <div class="row">
+            <!-- Card Plano Mensal -->
+            <div class="col-md-4 mb-4" data-aos="fade-up">
+
+            <div class="card mb-4 shadow">
+                    <div class="card-body">
+                        <h3 class="card-title">Plano Silver</h3>
+                        <span class="preco">R$70,00</span>
+                        <ul>
+                            <li>Musculação</li>
+                            <li>Aula de Zumba</li>
+                            <li>Aeróbica</li>
+                        </ul>
+                        <a href="/clientes/formulario" class="btn btn-primary btn-block">Assine agora</a>
+                    </div>
+                </div>
+            </div>
+            <!-- Card Plano Anual -->
+            <div class="col-md-4 mb-4" data-aos="fade-up">
+
+            <div class="card mb-4 shadow">
+                    <div class="card-body">
+                        <h3 class="card-title">Plano Gold</h3>
+                        <span class="preco">R$100,00</span>
+                        <ul>
+                            <li>Musculação</li>
+                            <li>Aula de Zumba</li>
+                            <li>Aeróbica</li>
+                            <li>Boxe</li>
+                        </ul>
+                        <a href="/clientes/formulario" class="btn btn-primary btn-block">Assine agora</a>
+                    </div>
+                </div>
+            </div>
+            <!-- Card Plano Semestral -->
+            <div class="col-md-4 mb-4" data-aos="fade-up">
+
+            <div class="card mb-4 shadow">
+                    <div class="card-body">
+                        <h3 class="card-title">Plano Platinum</h3>
+                        <span class="preco">R$130,00</span>
+                        <ul>
+                            <li>Musculação</li>
+                            <li>Aula de Zumba</li>
+                            <li>Aeróbica</li>
+                            <li>Boxe</li>
+                            <li>Crossfit</li>
+                        </ul>
+                        <a href="/clientes/formulario" class="btn btn-primary btn-block">Assine agora</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Mapa -->
+<section id="fale">
+    <!-- Conteúdo do mapa -->
+    <iframe id="mapa" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3675.159647416229!2d-43.17867878540058!3d-22.907481643653952!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x997f606640bb73%3A0x1ef710745c1fc7cc!2sAv.%20Rio%20Branco%2C%20185%20-%20Centro%2C%20Rio%20de%20Janeiro%20-%20RJ%2C%2020040-007!5e0!3m2!1spt-BR!2sbr!4v1674831355206!5m2!1spt-BR!2sbr" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+</section>
+
+<!-- Rodapé -->
+<!-- Rodapé -->
+<footer class="footer" style="background-color: #1f272d; color: white; padding: 30px 0;">
+    <!-- Conteúdo do rodapé -->
+    <div class="container">
+        <div class="row">
+            <!-- Coluna 1 - Informações da Empresa -->
+            <div class="col-md-4">
+                <h5>Informações da Empresa</h5>
+                <p>Academia Hardcore</p>
+                <p>Email: contato@hardcore.com</p>
+                <p>Contato: (11) 1234-5678</p>
+            </div>
+
+            <!-- Coluna 2 - Horário de Atendimento -->
+            <div class="col-md-4">
+                <h5>Horário de Atendimento</h5>
+                <p>Segunda a sábado</p>
+                <p>Das 8:00 às 18:00</p>
+            </div>
+
+            <!-- Coluna 3 - Mídias Sociais -->
+            <div class="col-md-4">
+                <h5>Mídias Sociais</h5>
+                <div class="midias">
+                    <a href="https://twitter.com/" target="_blank" class="social-link">
+                        <img th:src="@{/images/twitter.svg}" alt="twitter">
+                    </a>
+                    <a href="https://facebook.com/" target="_blank" class="social-link">
+                        <img th:src="@{/images/facebook.svg}" alt="facebook">
+                    </a>
+                    <a href="https://youtube.com/" target="_blank" class="social-link">
+                        <img th:src="@{/images/youtube.svg}" alt="youtube">
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</footer>
+
+
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+
+</body>
+</html>

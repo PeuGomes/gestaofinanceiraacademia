@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="pt-br" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cadastro de Clientes</title>
+    <!-- Adicionando o Bootstrap -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+          integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <!-- Adicionando o jQuery e o jQuery Mask -->
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.16/jquery.mask.min.js"></script>
+    <style>
+        body {
+            background-color: #f8f9fa; /* Cor de fundo geral */
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .container {
+            background-color: #ffffff; /* Cor de fundo do contêiner */
+            border-radius: 10px; /* Borda arredondada */
+            padding: 20px; /* Espaçamento interno */
+            margin-top: 50px; /* Espaçamento superior */
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Sombra suave */
+            flex: 1;
+        }
+
+        h2 {
+            color: #007bff; /* Cor do cabeçalho */
+        }
+
+        label {
+            color: #495057; /* Cor do texto das labels */
+        }
+
+        button {
+            background-color: #007bff; /* Cor do botão */
+        }
+
+        footer {
+            background-color: #343a40; /* Cor de fundo do rodapé */
+            color: #ffffff; /* Cor do texto no rodapé */
+            padding: 20px 0; /* Espaçamento interno do rodapé */
+            margin-top: auto; /* Para empurrar o rodapé para a parte inferior */
+        }
+
+        /* Adicionei cor ao texto no rodapé */
+        footer p, footer h5 {
+            color: black;
+        }
+    </style>
+</head>
+
+<body>
+<div th:if="${not #strings.isEmpty(error)}" class="alert alert-danger">
+    <p th:text="${error}"></p>
+</div>
+<div th:if="${not #strings.isEmpty(mensagem)}" class="alert alert-success">
+    <p th:text="${mensagem}"></p>
+</div>
+<section>
+    <div class="container mt-4">
+        <h2>Cadastro</h2>
+
+        <form th:object="${requisicao}" th:action="@{/admin/cadastrar}" method="post">
+
+            <div class="form-group">
+                <label for="nome">Nome:</label>
+                <input type="text" class="form-control" id="nome" name="nome" th:field="*{nome}" placeholder="Nome Completo" required>
+            </div>
+
+            <div class="form-group">
+                <label for="cpf">CPF:</label>
+                <input type="text" class="form-control" id="cpf" name="cpf" th:field="*{cpf}" placeholder="Ex: 12345678912"  title="Digite 11 dígitos numéricos"  required>
+
+                <!-- Exibição da mensagem de erro para o campo CPF -->
+                <div th:if="${#fields.hasErrors('cpf')}" class="alert alert-danger">
+                    <p th:text="${#fields.errors('cpf')}"></p>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="dataNascimento">Data de Nascimento:</label>
+                <input type="date" class="form-control" id="dataNascimento" name="dataNascimento" th:field="*{dataNascimento}" placeholder="Data de Nascimento" required>
+            </div>
+
+            <div class="form-group">
+                <label for="email">Email:</label>
+                <input type="email" class="form-control" id="email" name="email" th:field="*{email}" placeholder="Ex: SeuEmail@gmail.com" required>
+            </div>
+
+            <div class="form-group">
+                <label for="telefone">Telefone:</label>
+                <input type="text" class="form-control" id="telefone" name="telefone" th:field="*{telefone}" placeholder="Ex: 71995678912"  title="Digite 11 dígitos numéricos" required>
+            </div>
+
+            <div class="form-group">
+                <label for="cep">CEP:</label>
+                <input type="text" class="form-control" id="cep" name="cep" onblur="consultaCep()" placeholder="Ex: 40140320" required>
+            </div>
+
+            <div class="form-group">
+                <label for="logradouro">Logradouro:</label>
+                <input type="text" class="form-control" id="logradouro" name="logradouro" th:field="*{logradouro}" >
+            </div>
+
+            <div class="form-group">
+                <label for="bairro">Bairro:</label>
+                <input type="text" class="form-control" id="bairro" name="bairro" th:field="*{bairro}" >
+            </div>
+
+            <div class="form-group">
+                <label for="cidade">Cidade:</label>
+                <input type="text" class="form-control" id="cidade" name="cidade" th:field="*{cidade}" >
+            </div>
+
+            <div class="form-group">
+                <label for="estado">Estado:</label>
+                <input type="text" class="form-control" id="estado" name="estado" th:field="*{estado}" >
+            </div>
+            <!-- Adicione este bloco para exibir a seleção de planos -->
+            <div class="form-group">
+                <label for="planoId">Selecione o Plano:</label>
+                <select class="form-control" id="planoId" name="idPlano" th:field="*{idPlano}" required>
+                    <option th:each="plano : ${planos}" th:value="${plano.id}" th:text="${plano.tipo + ' - R$ ' + plano.valor}"></option>
+                </select>
+            </div>
+
+            <button type="submit" id="enviarBtn" class="btn btn-primary">Cadastrar</button>
+        </form>
+        <div class="mt-3">
+            <a th:href="@{/admin/dashboard}" class="btn btn-secondary">Dashboard</a>
+        </div>
+        <div class="mt-3">
+            <a th:href="@{/}" class="btn btn-secondary">Página Inicial</a>
+        </div>
+    </div>
+</section>
+<!-- Adicione um espaçamento no final do conteúdo para evitar sobreposição pelo rodapé -->
+<div style="margin-bottom: 60px;"></div>
+<!-- Rodapé -->
+<footer class="footer" style="background-color: #1f272d; color: white; padding: 30px 0;">
+    <!-- Conteúdo do rodapé -->
+    <div class="container">
+        <div class="row">
+            <!-- Coluna 1 - Informações da Empresa -->
+            <div class="col-md-4">
+                <h5>Informações da Empresa</h5>
+                <p>Academia Hardcore</p>
+                <p>Email: contato@hardcore.com</p>
+                <p>Contato: (11) 1234-5678</p>
+            </div>
+
+            <!-- Coluna 2 - Horário de Atendimento -->
+            <div class="col-md-4">
+                <h5>Horário de Atendimento</h5>
+                <p>Segunda a sábado</p>
+                <p>Das 8:00 às 18:00</p>
+            </div>
+
+            <!-- Coluna 3 - Mídias Sociais -->
+            <div class="col-md-4">
+                <h5>Mídias Sociais</h5>
+                <div class="midias">
+                    <a href="https://twitter.com/" target="_blank" class="social-link">
+                        <img th:src="@{/images/twitter.svg}" alt="twitter">
+                    </a>
+                    <a href="https://facebook.com/" target="_blank" class="social-link">
+                        <img th:src="@{/images/facebook.svg}" alt="facebook">
+                    </a>
+                    <a href="https://youtube.com/" target="_blank" class="social-link">
+                        <img th:src="@{/images/youtube.svg}" alt="youtube">
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</footer>
+
+
+<!-- Adicionando scripts JavaScript para consulta de CEP -->
+<script>
+
+    // Função para consultar CEP
+    function consultaCep() {
+        var cep = document.getElementById('cep').value.replace(/\D/g, ''); // Remover caracteres não numéricos
+        if (cep.length !== 8) {
+            alert('CEP inválido. Informe os 8 dígitos.');
+            return;
+        }
+
+        // Fazer a requisição à API de CEP (substitua pela URL da API de CEP que você estiver usando)
+        var apiUrl = 'https://viacep.com.br/ws/' + cep + '/json/';
+        fetch(apiUrl)
+            .then(response => response.json())
+            .then(data => preencherCamposComCep(data))
+            .catch(error => console.error('Erro ao consultar CEP:', error));
+    }
+
+    // Função para preencher os campos com os dados do CEP
+    function preencherCamposComCep(data) {
+        if (data.erro) {
+            alert('CEP não encontrado. Verifique o CEP informado.');
+            return;
+        }
+
+        document.getElementById('logradouro').value = data.logradouro;
+        document.getElementById('bairro').value = data.bairro;
+        document.getElementById('cidade').value = data.localidade;
+        document.getElementById('estado').value = data.uf;
+    }
+</script>
+
+<!-- Adicionando máscara para CPF e telefone -->
+<!-- Adicionando máscara para CPF e telefone -->
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        // Máscara para CPF
+        var cpfInput = document.getElementById('cpf');
+        cpfInput.addEventListener('input', function (event) {
+            var inputValue = event.target.value.replace(/\D/g, '');
+            if (inputValue.length > 11) {
+                inputValue = inputValue.slice(0, 11);
+            }
+            inputValue = inputValue.replace(/(\d{3})(\d{3})(\d{3})(\d{0,2})/, '$1.$2.$3-$4');
+            event.target.value = inputValue;
+        });
+
+        // Máscara para telefone
+        var telefoneInput = document.getElementById('telefone');
+        telefoneInput.addEventListener('input', function (event) {
+            var inputValue = event.target.value.replace(/\D/g, '');
+            if (inputValue.length > 11) {
+                inputValue = inputValue.slice(0, 11);
+            }
+            inputValue = inputValue.replace(/(\d{2})(\d{5})(\d{0,4})/, '($1) $2-$3');
+            event.target.value = inputValue;
+        });
+
+        // Adicionando a validação ao clicar no botão de enviar
+        var enviarBtn = document.getElementById('enviarBtn'); // Substitua 'enviarBtn' pelo ID real do seu botão de enviar
+        enviarBtn.addEventListener('click', function (event) {
+            var cpfValue = cpfInput.value.replace(/\D/g, '');
+            var telefoneValue = telefoneInput.value.replace(/\D/g, '');
+
+            if (cpfValue.length !== 11 || telefoneValue.length !== 11) {
+                alert('CPF e telefone devem ter 11 dígitos. Verifique se os outros campos alem do cpf e telefone estão preenchidos corretamente.');
+                event.preventDefault(); // Impede o envio do formulário se a validação falhar
+            }
+        });
+    });
+</script>
+
+
+<!-- Adicionando o Bootstrap JS e Popper.js -->
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+        crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.0.7/dist/umd/popper.min.js"
+        integrity="sha384-MFUmQk4ZeCiMcPFXQqHmW5NlHLGKxTn0a9%2BtDRUiELC1XVpLTtHUj2SAIKtn2I5V"
+        crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+        crossorigin="anonymous"></script>
+<script>
+    // Função para limpar os campos do formulário
+    function limparCampos() {
+        document.getElementById('nome').value = '';
+        document.getElementById('cpf').value = '';
+        document.getElementById('dataNascimento').value = '';
+        document.getElementById('email').value = '';
+        document.getElementById('telefone').value = '';
+        document.getElementById('cep').value = '';
+        document.getElementById('logradouro').value = '';
+        document.getElementById('bairro').value = '';
+        document.getElementById('cidade').value = '';
+        document.getElementById('estado').value = '';
+    }
+
+    // Chamando a função de limpar campos quando a página é carregada
+    window.onload = limparCampos;
+</script>
+
+</body>
+
+</html>

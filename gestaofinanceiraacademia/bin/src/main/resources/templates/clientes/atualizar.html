@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+  <title>Atualizar Cliente</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+        integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+
+
+  <style>
+    body {
+      background-color: #f8f9fa; /* Cor de fundo geral */
+    }
+
+    .container {
+      background-color: #ffffff; /* Cor de fundo do contêiner */
+      border-radius: 10px; /* Borda arredondada */
+      padding: 20px; /* Espaçamento interno */
+      margin-top: 50px; /* Espaçamento superior */
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Sombra suave */
+    }
+
+    h2 {
+      color: #007bff; /* Cor do cabeçalho */
+    }
+
+    label {
+      color: #495057; /* Cor do texto das labels */
+    }
+
+
+    button {
+      background-color: #007bff; /* Cor do botão */
+    }
+    footer {
+      background-color: #343a40; /* Cor de fundo do rodapé */
+      color: #ffffff; /* Cor do texto no rodapé */
+      padding: 20px 0; /* Espaçamento interno do rodapé */
+    }
+
+    /* Adicionei cor ao texto no rodapé */
+    footer p, footer h5 {
+      color: black;
+    }
+  </style>
+</head>
+
+<body>
+
+<section>
+  <div class="container">
+    <h2 class="d-flex justify-content-center">Edição de Cadastro</h2>
+
+    <div th:if="${not #strings.isEmpty(mensagem)}" class="alert alert-success">
+      <strong>Successo!</strong> <span th:text="${mensagem}"></span>
+    </div>
+
+    <div th:if="${not #strings.isEmpty(error)}" class="alert alert-danger">
+      <strong>Erro!</strong> <span th:text="${error}"></span>
+    </div>
+
+    <form th:action="@{/clientes/atualizar}" th:object="${requisicaocliente}" method="post">
+
+      <!-- Modificação para o campo CPF -->
+      <div class="form-group row">
+        <label for="cpf" class="col-sm-2 col-form-label">CPF:</label>
+        <div class="col-sm-10">
+          <input type="text" id="cpf" name="cpf" class="form-control" th:field="*{cpf}"
+                 placeholder="Ex: 12345678912" required onblur="preencherCamposAutomaticamente()" maxlength="14">
+        </div>
+      </div>
+
+      <div class="form-group row">
+        <label for="nome" class="col-sm-2 col-form-label">Nome:</label>
+
+        <div class="col-sm-10">
+          <input type="text" id="nome" name="nome" class="form-control" th:field="*{nome}"  placeholder="Nome do Cliente" required>
+        </div>
+      </div>
+
+      <div class="form-group row">
+        <label for="dataNascimento" class="col-sm-2 col-form-label">Data de Nascimento:</label>
+        <div class="col-sm-10">
+          <input type="date" id="dataNascimento" name="dataNascimento" class="form-control" th:field="*{dataNascimento}"  placeholder="Data de Nascimento" required>
+        </div>
+      </div>
+
+      <div class="form-group row">
+        <label for="email" class="col-sm-2 col-form-label">Email:</label>
+        <div class="col-sm-10">
+          <input type="email" id="email" name="email" class="form-control" th:field="*{email}" placeholder="Email do Cliente" required>
+        </div>
+      </div>
+
+      <!-- Modificação para o campo telefone -->
+      <div class="form-group row">
+        <label for="telefone" class="col-sm-2 col-form-label">Telefone:</label>
+        <div class="col-sm-10">
+          <input type="text" id="telefone" name="telefone" class="form-control" th:field="*{telefone}"
+                 placeholder="Ex: (71)99999-6909" required maxlength="14">
+        </div>
+      </div>
+
+      <div class="form-group row">
+        <label for="cep" class="col-sm-2 col-form-label">CEP:</label>
+        <div class="col-sm-10">
+          <input type="text" class="form-control" id="cep" name="cep" onblur="consultaCep()" required>
+        </div>
+      </div>
+
+      <div class="form-group row">
+        <label for="logradouro" class="col-sm-2 col-form-label">Logradouro:</label>
+        <div class="col-sm-10">
+          <input type="text" class="form-control" id="logradouro" name="logradouro" th:field="*{logradouro}" >
+        </div>
+      </div>
+
+      <div class="form-group row">
+        <label for="bairro" class="col-sm-2 col-form-label">Bairro:</label>
+        <div class="col-sm-10">
+          <input type="text" class="form-control" id="bairro" name="bairro" th:field="*{bairro}" >
+        </div>
+      </div>
+
+      <div class="form-group row">
+        <label for="cidade" class="col-sm-2 col-form-label">Cidade:</label>
+        <div class="col-sm-10">
+          <input type="text" class="form-control" id="cidade" name="cidade" th:field="*{cidade}" required>
+        </div>
+      </div>
+
+      <div class="form-group row">
+        <label for="estado" class="col-sm-2 col-form-label">Estado:</label>
+        <div class="col-sm-10">
+          <input type="text" class="form-control" id="estado" name="estado" th:field="*{estado}" required>
+        </div>
+      </div>
+
+      <div class="form-group row col-sm-10">
+        <label for="planoId">Selecione o Plano:</label>
+        <select class="form-control" id="planoId" name="idPlano" th:field="*{idPlano}" required>
+          <option th:each="plano : ${planos}"
+                  th:value="${plano.id}"
+                  th:attr="data-tipo=${plano.tipo}, data-valor=${plano.valor}"
+                  th:text="${plano.tipo + ' - R$ ' + plano.valor}"></option>
+        </select>
+      </div>
+
+      <!-- Adicione outros campos do cliente conforme necessário -->
+
+      <div class="form-group row">
+        <div class="col-sm-10 offset-sm-2">
+          <button type="submit" class="btn btn-primary mt-2">Atualizar</button>
+          <a th:href="@{/}" class="btn btn-secondary mt-2" >Home</a>
+        </div>
+      </div>
+
+    </form>
+  </div>
+</section>
+<!-- Adicione um espaçamento no final do conteúdo para evitar sobreposição pelo rodapé -->
+<div style="margin-bottom: 60px;"></div>
+<footer class="footer" style="background-color: #1f272d; color: white; padding: 30px 0;">
+  <!-- Conteúdo do rodapé -->
+  <div class="container">
+    <div class="row">
+      <!-- Coluna 1 - Informações da Empresa -->
+      <div class="col-md-4">
+        <h5>Informações da Empresa</h5>
+        <p>Academia Hardcore</p>
+        <p>Email: contato@hardcore.com</p>
+        <p>Contato: (11) 1234-5678</p>
+      </div>
+
+      <!-- Coluna 2 - Horário de Atendimento -->
+      <div class="col-md-4">
+        <h5>Horário de Atendimento</h5>
+        <p>Segunda a sábado</p>
+        <p>Das 8:00 às 18:00</p>
+      </div>
+
+      <!-- Coluna 3 - Mídias Sociais -->
+      <div class="col-md-4">
+        <h5>Mídias Sociais</h5>
+        <div class="midias">
+          <a href="https://twitter.com/" target="_blank" class="social-link">
+            <img th:src="@{/images/twitter.svg}" alt="twitter">
+          </a>
+          <a href="https://facebook.com/" target="_blank" class="social-link">
+            <img th:src="@{/images/facebook.svg}" alt="facebook">
+          </a>
+          <a href="https://youtube.com/" target="_blank" class="social-link">
+            <img th:src="@{/images/youtube.svg}" alt="youtube">
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</footer>
+<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.16/jquery.mask.min.js"></script>
+
+
+
+<script th:inline="javascript">
+
+  // Event listener para formatar o CPF durante a digitação
+  $('#cpf').on('input', function () {
+    var value = this.value.replace(/\D/g, ''); // Remove caracteres não numéricos
+
+    if (value.length > 9) {
+      value = value.replace(/(\d{3})(\d{3})(\d{3})(\d{2})/, '$1.$2.$3-$4');
+    } else {
+      value = value.replace(/(\d{3})(\d{3})(\d{3})/, '$1.$2.$3');
+    }
+
+    this.value = value;
+  });
+
+  // Event listener para formatar o telefone durante a digitação
+  $('#telefone').on('input', function () {
+    var value = this.value.replace(/\D/g, ''); // Remove caracteres não numéricos
+    if (value.length >= 11) {
+      value = value.replace(/(\d{2})(\d{5})(\d{4})/, '($1)$2-$3');
+    } else {
+      value = value.replace(/(\d{2})(\d{4})(\d{4})/, '($1)$2-$3');
+    }
+    this.value = value;
+  });
+
+  // Função para preencher campos automaticamente
+  function preencherCamposAutomaticamente() {
+    // Remover formatação do CPF antes de buscar o cliente
+    var cpf = $('#cpf').val().replace(/\D/g, '');
+
+    $.get('/clientes/buscar-cliente-por-cpf', { cpf: cpf }, function (cliente) {
+      // Lógica para preencher os campos automaticamente com os dados do cliente
+      $('#nome').val(cliente.nome);
+      $('#dataNascimento').val(cliente.dataNascimento);
+      $('#email').val(cliente.email);
+
+      // Formatar CPF
+      var cpfSemFormato = cpf.replace(/\D/g, '');
+      $('#cpf').val(cpfSemFormato);
+
+      // Formatar telefone
+      var telefoneSemFormato = cliente.telefone.replace(/\D/g, '');
+      $('#telefone').val(telefoneSemFormato);
+
+      $('#cep').val(cliente.cep);
+      $('#logradouro').val(cliente.logradouro);
+      $('#bairro').val(cliente.bairro);
+      $('#cidade').val(cliente.cidade);
+      $('#estado').val(cliente.estado);
+
+      // Preencha outros campos da mesma maneira
+
+      // Exemplo de como acessar os valores do plano
+      var tipoPlano = $('[name=idPlano] option:selected').data('tipo');
+      var valorPlano = $('[name=idPlano] option:selected').data('valor');
+
+      // Faça o que for necessário com tipoPlano e valorPlano
+    });
+  }
+</script>
+
+
+
+<script>
+
+
+  // Função para consultar CEP
+  function consultaCep() {
+    let cep = document.getElementById('cep').value.replace(/\D/g, ''); // Remover caracteres não numéricos
+    if (cep.length !== 8) {
+
+      return;
+    }
+
+    // Fazer a requisição à API de CEP (substitua pela URL da API de CEP que você estiver usando)
+    let apiUrl = 'https://viacep.com.br/ws/' + cep + '/json/';
+    fetch(apiUrl)
+            .then(response => response.json())
+            .then(data => preencherCamposComCep(data))
+            .catch(error => console.error('Erro ao consultar CEP:', error));
+  }
+
+  // Função para preencher os campos com os dados do CEP
+  function preencherCamposComCep(data) {
+    if (data.erro) {
+      alert('CEP não encontrado. Verifique o CEP informado.');
+      return;
+    }
+
+    document.getElementById('logradouro').value = data.logradouro;
+    document.getElementById('bairro').value = data.bairro;
+    document.getElementById('cidade').value = data.localidade;
+    document.getElementById('estado').value = data.uf;
+  }
+</script>
+<!-- Adicione este script no final do seu arquivo HTML -->
+<script>
+  // Função para limpar os campos do formulário
+  function limparCampos() {
+    document.getElementById('cpf').value = '';
+    document.getElementById('nome').value = '';
+    document.getElementById('dataNascimento').value = '';
+    document.getElementById('email').value = '';
+    document.getElementById('telefone').value = '';
+    document.getElementById('cep').value = '';
+    document.getElementById('logradouro').value = '';
+    document.getElementById('bairro').value = '';
+    document.getElementById('cidade').value = '';
+    document.getElementById('estado').value = '';
+    // Adicione mais campos conforme necessário
+  }
+
+  // Chame a função de limpar campos quando a página for carregada
+  window.onload = function() {
+    limparCampos();
+  };
+</script>
+
+</body>
+</html>

@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="pt-br" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cadastro de Clientes</title>
+    <!-- Adicionando o Bootstrap -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+          integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <!-- Adicionando o jQuery e o jQuery Mask -->
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.16/jquery.mask.min.js"></script>
+    <style>
+        body {
+            background-color: #f8f9fa; /* Cor de fundo geral */
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .container {
+            background-color: #ffffff; /* Cor de fundo do contêiner */
+            border-radius: 10px; /* Borda arredondada */
+            padding: 20px; /* Espaçamento interno */
+            margin-top: 50px; /* Espaçamento superior */
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Sombra suave */
+            flex: 1;
+        }
+
+        h2 {
+            color: #007bff; /* Cor do cabeçalho */
+        }
+
+        label {
+            color: #495057; /* Cor do texto das labels */
+        }
+
+        button {
+            background-color: #007bff; /* Cor do botão */
+        }
+
+        footer {
+            background-color: #343a40; /* Cor de fundo do rodapé */
+            color: #ffffff; /* Cor do texto no rodapé */
+            padding: 20px 0; /* Espaçamento interno do rodapé */
+            margin-top: auto; /* Para empurrar o rodapé para a parte inferior */
+        }
+
+        /* Adicionei cor ao texto no rodapé */
+        footer p, footer h5 {
+            color: black;
+        }
+    </style>
+</head>
+
+<body>
+</div>
+<section>
+    <div th:if="${success}" class="alert alert-success" role="alert">
+        Cliente excluído com sucesso!
+    </div>
+    <div th:if="${error}" class="alert alert-danger" role="alert">
+        <span th:text="${error}"></span>
+    </div>
+    <div class="container mt-4">
+        <h2>Excluir Cliente</h2>
+
+        <form action="/admin/excluir" method="post">
+
+            <div class="form-group">
+                <label for="cpf">CPF:</label>
+                <input type="text" class="form-control" id="cpf" name="cpf"  placeholder="Ex: 12345678912" required pattern="\d{11}" title="Digite 11 dígitos numéricos">
+
+            </div>
+            <button type="submit" class="btn btn-primary">Excluir</button>
+        </form>
+        <div class="mt-3">
+            <a th:href="@{/admin/dashboard}" class="btn btn-secondary">Dashboard</a>
+        </div>
+        <div class="mt-3">
+            <a th:href="@{/admin/listar}" class="btn btn-secondary">Voltar para Lista de Clientes</a>
+        </div>
+    </div>
+</section>
+<!-- Adicione um espaçamento no final do conteúdo para evitar sobreposição pelo rodapé -->
+<div style="margin-bottom: 60px;"></div>
+<!-- Rodapé -->
+<footer class="footer" style="background-color: #1f272d; color: white; padding: 30px 0;">
+    <!-- Conteúdo do rodapé -->
+    <div class="container">
+        <div class="row">
+            <!-- Coluna 1 - Informações da Empresa -->
+            <div class="col-md-4">
+                <h5>Informações da Empresa</h5>
+                <p>Academia Hardcore</p>
+                <p>Email: contato@hardcore.com</p>
+                <p>Contato: (11) 1234-5678</p>
+            </div>
+
+            <!-- Coluna 2 - Horário de Atendimento -->
+            <div class="col-md-4">
+                <h5>Horário de Atendimento</h5>
+                <p>Segunda a sábado</p>
+                <p>Das 8:00 às 18:00</p>
+            </div>
+
+            <!-- Coluna 3 - Mídias Sociais -->
+            <div class="col-md-4">
+                <h5>Mídias Sociais</h5>
+                <div class="midias">
+                    <a href="https://twitter.com/" target="_blank" class="social-link">
+                        <img th:src="@{/images/twitter.svg}" alt="twitter">
+                    </a>
+                    <a href="https://facebook.com/" target="_blank" class="social-link">
+                        <img th:src="@{/images/facebook.svg}" alt="facebook">
+                    </a>
+                    <a href="https://youtube.com/" target="_blank" class="social-link">
+                        <img th:src="@{/images/youtube.svg}" alt="youtube">
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<!-- Adicionando o Bootstrap JS e Popper.js -->
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+        crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.0.7/dist/umd/popper.min.js"
+        integrity="sha384-MFUmQk4ZeCiMcPFXQqHmW5NlHLGKxTn0a9%2BtDRUiELC1XVpLTtHUj2SAIKtn2I5V"
+        crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+        crossorigin="anonymous"></script>
+
+</body>
+
+</html>

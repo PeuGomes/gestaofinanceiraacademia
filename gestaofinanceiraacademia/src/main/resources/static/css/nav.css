@@ -1,0 +1,72 @@
+/* Estilo para o cabeçalho personalizado */
+.custom-header {
+    background-color: #333; /* Cor de fundo preto */
+    color: #fff; /* Cor do texto branco */
+    padding: 10px 0; /* Espaçamento interno superior e inferior */
+}
+
+.custom-header .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.custom-header .logo {
+    display: flex;
+    align-items: center; /* Centralizar verticalmente */
+}
+
+.custom-header .logo img {
+    margin-right: 10px; /* Espaçamento à direita da imagem do logotipo */
+    width: 80px; /* Largura da imagem do logotipo */
+    height: auto; /* Altura automática para manter a proporção */
+}
+
+.custom-header .menu a {
+    color: #fff; /* Cor do texto do link */
+    margin-left: 20px; /* Espaçamento à esquerda entre os links do menu */
+    text-decoration: none; /* Remover sublinhado dos links */
+}
+
+/* Estilo para tornar o cabeçalho responsivo */
+@media (max-width: 768px) {
+    .custom-header .menu {
+        display: none;
+    }
+    .custom-header .logo {
+        flex: 1;
+    }
+}
+/* Estilo para os slides responsivos */
+@media (max-width: 768px) {
+    .slider {
+        height: auto;
+    }
+    .hero-section {
+        height: auto !important;
+    }
+    .hero-section h1 {
+        font-size: 3rem;
+    }
+    .hero-section p {
+        font-size: 1.5rem;
+    }
+}
+/* Estilo para tornar o rodapé responsivo */
+@media (max-width: 768px) {
+    .footer {
+        padding: 20px 0;
+    }
+    .midias {
+        text-align: center;
+        margin-bottom: 20px;
+    }
+    .rodape {
+        text-align: center;
+    }
+}
+.hero-section {
+    background-size: cover;
+    background-position: center center;
+    height: 100vh;
+}

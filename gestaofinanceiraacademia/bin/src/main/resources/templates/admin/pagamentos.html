@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+
+<head>
+    <title>Pagamentos</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" />
+
+
+    <!-- Adicione outros imports necessários e estilos/scripts, se necessário -->
+</head>
+
+<body>
+
+<section class="container mt-5">
+    <div class="row">
+        <div class="col-md-6 offset-md-3">
+            <!-- Formulário para cadastrar novo pagamento -->
+            <form th:object="${requisicao}" th:action="@{/admin/pagamentos}" method="post" class="card p-4">
+                <h2 class="text-center mb-4">Efetuando Pagamento</h2>
+
+                <div class="form-group">
+                    <label for="valor">Valor:</label>
+                    <input type="number" step="0.01" class="form-control" id="valor" th:field="*{valor}" onblur="formatNumber(this)" required/>
+                </div>
+
+                <div class="form-group">
+                    <label for="dataPagamento">Data Pagamento:</label>
+                    <input type="date" class="form-control" id="dataPagamento" th:field="*{dataPagamento}" required/>
+                </div>
+
+                <div class="form-group">
+                    <label for="vencimento">Vencimento:</label>
+                    <input type="date" class="form-control" id="vencimento" th:field="*{vencimento}" required/>
+                </div>
+
+                <!-- Adicione um campo de seleção para escolher o cliente -->
+                <div class="form-group">
+                    <label for="idCliente">Cliente:</label>
+                    <select class="form-control" id="idCliente" th:field="*{idCliente}" required>
+                        <option th:each="cliente : ${clientes}" th:value="${cliente.id}" th:text="${cliente.id + ' - ' + cliente.nome}"></option>
+                    </select>
+                </div>
+
+                <!-- Adicione outros campos do seu formulário -->
+
+                <button type="submit" class="btn btn-success btn-block mt-4">Efetuar Pagamento</button>
+                <a class="btn btn-primary mt-4 action-btn" th:href="@{/admin/dashboard}">Dashboard</a>
+            </form>
+            <!-- Exiba mensagens de erro ou sucesso -->
+            <div th:if="${mensagemErro}" class="alert alert-danger" role="alert">
+                <p th:text="${mensagemErro}"></p>
+            </div>
+
+            <div th:if="${mensagemSucesso}" class="alert alert-success" role="alert">
+                <p th:text="${mensagemSucesso}"></p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Exibe a lista de pagamentos -->
+    <div class="table-responsive">
+        <div class="col-md-12">
+            <table class="table table-bordered table-hover">
+                <thead class="thead-dark">
+                <tr>
+                    <th scope="col">ID do Pagamento</th>
+                    <th scope="col">Nome do Cliente</th>
+                    <th scope="col">Valor Pago</th>
+                    <th scope="col">Data de Pagamento</th>
+                    <th scope="col">Data de Vencimento</th>
+                    <th scope="col">Imprimir Comprovante</th>
+                    <th scope="col">Atualizar Pagamento</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:each="pagamento : ${pagamentos}">
+                    <td th:text="${pagamento.id}"></td>
+                    <td th:if="${pagamento.cliente != null}" th:text="${pagamento.cliente.nome}"></td>
+                    <td th:if="${pagamento.valor != null}" th:text="${pagamento.valor}"></td>
+                    <td th:if="${pagamento.dataPagamento != null}" th:text="${#temporals.format(pagamento.dataPagamento, 'dd/MM/yyyy')}"></td>
+                    <td th:if="${pagamento.vencimento != null}" th:text="${#temporals.format(pagamento.vencimento, 'dd/MM/yyyy')}"></td>
+                    <td>
+                        <a th:href="@{/admin/pagamentos/{pagamentoId}/download(pagamentoId=${pagamento.id})}" class="btn btn-primary btn-sm">Download Comprovante PDF</a>
+                    </td>
+                    <!-- Dentro da tabela, onde você exibe os pagamentos -->
+                    <td>
+                        <a th:href="@{/admin/pagamentos/{pagamentoId}/atualizar(pagamentoId=${pagamento.id})}" class="btn btn-primary btn-sm">Atualizar Pagamento do Cliente</a>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</section>
+<!-- Adicione esta parte ao final do seu arquivo HTML, antes da tag </body> -->
+<footer class="footer mt-5 bg-dark">
+    <div class="container text-white">
+        <div class="row">
+            <div class="col-md-4">
+                <h5>Informações da Empresa</h5>
+                <p>Academia Hardcore</p>
+                <p>Email: contato@hardcore.com</p>
+                <p>Contato: (11) 1234-5678</p>
+            </div>
+            <div class="col-md-4">
+                <h5>Horário de Atendimento</h5>
+                <p>Segunda a sábado</p>
+                <p>Das 8:00 às 18:00</p>
+            </div>
+            <div class="col-md-4">
+                <h5>Mídias Sociais</h5>
+                <div class="midias">
+                    <a href="https://twitter.com/" target="_blank" class="social-link">
+                        <img th:src="@{/images/twitter.svg}" alt="twitter">
+                    </a>
+                    <a href="https://facebook.com/" target="_blank" class="social-link">
+                        <img th:src="@{/images/facebook.svg}" alt="facebook">
+                    </a>
+                    <a href="https://youtube.com/" target="_blank" class="social-link">
+                        <img th:src="@{/images/youtube.svg}" alt="youtube">
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<script>
+    function formatNumber(input) {
+        // Formatar para duas casas decimais
+        input.value = parseFloat(input.value).toFixed(2);
+    }
+</script>
+<!-- Scripts do Bootstrap e outros scripts necessários -->
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.0.7/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+</body>
+
+</html>
+
+</body>
+
+</html>

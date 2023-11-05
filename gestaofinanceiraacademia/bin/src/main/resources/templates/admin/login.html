@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="pt-br" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Login</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet">
+
+    <style>
+        body {
+            background-color: #f8f9fa;
+        }
+
+        .container {
+            max-width: 700px; /* Ajustei o máximo para 700px */
+            margin: auto;
+            margin-top: 100px;
+            background-color: #ffffff;
+            border: 1px solid #dcdcdc;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        h2 {
+            text-align: center;
+            margin-bottom: 20px;
+            color: #007bff;
+        }
+
+        label {
+            color: #555555;
+        }
+
+        .form-control {
+            border-radius: 3px;
+        }
+
+        .btn-primary {
+            background-color: #007bff;
+            border: 1px solid #007bff;
+        }
+
+        .btn-primary:hover {
+            background-color: #0056b3;
+            border: 1px solid #0056b3;
+        }
+
+        .alert-danger {
+            background-color: #f8d7da;
+            border-color: #f5c6cb;
+            color: #721c24;
+        }
+
+        footer {
+            background-color: #343a40;
+            color: #ffffff;
+            padding: 20px 0;
+        }
+
+        /* Adicionei cor ao texto no rodapé */
+        footer p, footer h5 {
+            color: black;
+            margin-bottom: 10px; /* Espaçamento inferior entre os itens do rodapé */
+        }
+    </style>
+</head>
+
+<body>
+
+<section class="form-section" style="max-width: 400px; margin:auto; margin-top: 100px; background-color: #ffffff; border: 1px solid #dcdcdc; padding: 20px; border-radius: 5px; box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);">
+    <h2 style="text-align: center; margin-bottom: 20px; color: #007bff;">Login</h2>
+    <div th:if="${mensagemErro}" class="alert alert-danger">
+        <p th:text="${mensagemErro}"></p>
+    </div>
+    <form th:object="${requisicaoNovoAdmin}" th:action="@{/admin/login}" method="post" style="display: flex; flex-direction: column;">
+        <div class="form-group" style="margin-bottom: 10px;">
+            <label for="nome">Nome:</label>
+            <input type="text" class="form-control" id="nome" name="nome" th:field="*{nome}" required>
+        </div>
+
+        <div class="form-group" style="margin-bottom: 10px;">
+            <label for="senha">Senha:</label>
+            <input type="password" class="form-control" id="senha" name="senha" th:field="*{senha}" required>
+        </div>
+
+        <button type="submit" class="btn btn-primary" style="width: 100%;">Login</button>
+    </form>
+</section>
+
+
+<!-- Adicione um espaçamento no final do conteúdo para evitar sobreposição pelo rodapé -->
+<div style="margin-bottom: 60px;"></div>
+<!-- Rodapé -->
+<footer class="footer" style="background-color: #1f272d; color: white; padding: 30px 0;">
+    <!-- Conteúdo do rodapé -->
+    <div class="container">
+        <div class="row">
+            <!-- Coluna 1 - Informações da Empresa -->
+            <div class="col-md-4">
+                <h5>Informações da Empresa</h5>
+                <p>Academia Hardcore</p>
+                <p>Email: contato@hardcore.com</p>
+                <p>Contato: (11) 1234-5678</p>
+            </div>
+
+            <!-- Coluna 2 - Horário de Atendimento -->
+            <div class="col-md-4">
+                <h5>Horário de Atendimento</h5>
+                <p>Segunda a sábado</p>
+                <p>Das 8:00 às 18:00</p>
+            </div>
+
+            <!-- Coluna 3 - Mídias Sociais -->
+            <div class="col-md-4">
+                <h5>Mídias Sociais</h5>
+                <div class="midias">
+                    <a href="https://twitter.com/" target="_blank" class="social-link">
+                        <img th:src="@{/images/twitter.svg}" alt="twitter">
+                    </a>
+                    <a href="https://facebook.com/" target="_blank" class="social-link">
+                        <img th:src="@{/images/facebook.svg}" alt="facebook">
+                    </a>
+                    <a href="https://youtube.com/" target="_blank" class="social-link">
+                        <img th:src="@{/images/youtube.svg}" alt="youtube">
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</footer>
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+
+</body>
+
+</html>

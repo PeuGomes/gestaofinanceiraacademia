@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+	</head>
+	<body>
+		<div class="container alert alert-info">
+			<br/>
+				<h1 class="d-flex justify-content-center">Listagem de Clientes</h1>
+			<br/>
+			<div class="card mb-3"  th:each="clientes : ${clientes}">
+				
+				<div>
+					<span><h5>Id do Cliente:</h5></h5></span>
+				</div>
+				<div  th:text="${clientes.id}"></div>
+	
+				<div>
+					<span><h5>Nome do Cliente:</h5></span>
+				</div>
+				<div th:text="${clientes.nome}"></div>
+
+				<h5>Cpf do Cliente:</h5>
+				<div  th:text="${clientes.cpf}"></div>
+				<div>
+					<span><h5>Data de Nascimento:</h5></h5></span>
+				</div>
+				<div><span th:text="${#temporals.format(clientes.dataNascimento, 'dd/MM/yyyy')}"></span></div>
+				<br/>
+		  </div>
+		   <br/>
+		   <div>
+
+
+		     <a class="btn btn-primary col-pd-2" href="/clientes/editarCliente" role="button">Editar</a>
+		   </div>
+		   
+		 <br/>
+		 </div>
+	<footer>
+		<div id ="contact-area">
+		  <div class="container">
+		  	<div class="row">
+		  	  <div class="col-md-12">
+		  	  	<h3 class="main-title d-flex justify-content-center">Entre em Contato Conosco</h3>
+		  	  	<br/>
+		  	  </div>
+		  	  <div class="col-md-4 contact-box">
+		  	  	
+		  	  	<h6><span class="contact-title">Ligue para:</span> (71)99999-9999</h6>
+		  	  	<h6><span class="contact-title">Horários:</span> 8:00 - 19:00</h6>
+		  	  </div>
+		  	  <div class="col-md-4 contact-box">
+		  	  	<h6><span class="contact-tile">Envie um e-mail:</span> contato@ks.com.br</h6>
+		  	  </div>
+		  	  <div class="col-md-4 contact-box">
+		  	  	<h6><span class="contact-tile">Enredeço:</span> Rua professor Leopoldo Amaral 366 empresarial alto do parque, 2º andar - Pituba, Salvador - BA, 41830-494</h6>
+		  	  </div>
+		  	</div>
+		  </div>
+		</div>
+	</footer>
+	</body>
+</html>

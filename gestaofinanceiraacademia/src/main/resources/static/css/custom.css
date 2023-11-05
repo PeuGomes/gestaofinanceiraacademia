@@ -1,0 +1,172 @@
+/* Estilo personalizado para o efeito de hover */
+.card {
+    border: none;
+    transition: transform 0.3s, box-shadow 0.3s;
+    padding: 10px; /* Ajuste o padding conforme necessário */
+    margin-bottom: 20px; /* Ajuste o margin conforme necessário */
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+
+.card-body {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.card-body ul {
+    list-style: none; /* Remover os estilos padrão da lista */
+    padding: 0; /* Remover o padding padrão da lista */
+}
+
+.btn-block {
+    margin-top: auto; /* Empurre o botão para o final do card */
+}
+
+.card:hover {
+    transform: scale(1.05);
+    box-shadow: 0 12px 20px rgba(0, 0, 0, 0.2);
+}
+
+.preco {
+    font-size: 1.5rem;
+    font-weight: bold;
+}
+
+.card-title {
+    font-size: 1.5rem;
+    font-weight: bold;
+}
+
+.card-text {
+    font-size: 1rem;
+}
+section#planos {
+    padding-bottom: 20px; /* Ajuste conforme necessário */
+}
+section#planos {
+    padding-bottom: 20px; /* Ajuste conforme necessário */
+}
+
+/* Estilo personalizado para os botões */
+.btn {
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+}
+
+.btn:hover {
+    background-color: #0056b3;
+}
+
+
+.conteudo-form {
+    background-color: #f4f4f4;
+    padding: 20px;
+    border-radius: 5px;
+}
+
+.map {
+    padding: 20px;
+}
+
+iframe {
+    width: 100%;
+    height: 100%;
+    border: 0;
+}
+.conteudo-form {
+    background-color: #101417;
+    padding: 20px;
+    border-radius: 5px;
+}
+
+.map {
+    padding: 20px;
+}
+
+iframe {
+    width: 100%;
+    height: 100%;
+    border: 0;
+}
+.cor{
+    color: white;
+}
+
+
+ body {
+     margin: 0;
+     padding: 0;
+ }
+
+#fale {
+    background-color: #101417;
+    height: 600px;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+}
+
+#mapa {
+    width: 50%;
+    height: 100%;
+    border: 0;
+    margin: 0 auto; /* Isso centralizará o iframe na section */
+    padding: 20px; /* Adicione padding (espaçamento interno) ao redor do iframe */
+}
+/* Estilo base para telas menores */
+@media (max-width: 767px) {
+    #mapa {
+        width: 90%;
+        max-width: 100%;
+        height: 70vh;
+        margin: 0 auto;
+        padding: 20px;
+    }
+}
+
+
+/* Estilo para telas médias */
+@media (min-width: 768px) and (max-width: 991px) {
+    #mapa {
+        width: 80%;
+        max-width: 100%;
+        height: 70vh;
+        margin: 0 auto;
+        padding: 20px;
+    }
+}
+
+/* Estilo para telas maiores */
+@media (min-width: 992px) and (max-width: 1200px) {
+    #mapa {
+        width: 70%;
+        max-width: 100%;
+        height: 80vh;
+        margin: 0 auto;
+        padding: 20px;
+    }
+}
+
+
+
+
+/* Ajustes para layout responsivo */
+@media (max-width: 767px) {
+    .card-body {
+        max-height: none;
+    }
+
+    .card {
+        margin-bottom: 15px; /* Adicione espaçamento entre os cards */
+
+    }
+
+    .btn-block {
+        margin-top: 15px; /* Adicione espaçamento acima do botão */
+    }
+}

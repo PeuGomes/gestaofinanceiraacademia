@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <title>Atualizar Cliente</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+          integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+
+
+    <style>
+        body {
+            background-color: #f8f9fa; /* Cor de fundo geral */
+        }
+
+        .container {
+            background-color: #ffffff; /* Cor de fundo do contêiner */
+            border-radius: 10px; /* Borda arredondada */
+            padding: 20px; /* Espaçamento interno */
+            margin-top: 50px; /* Espaçamento superior */
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Sombra suave */
+        }
+
+        h2 {
+            color: #007bff; /* Cor do cabeçalho */
+        }
+
+        label {
+            color: #495057; /* Cor do texto das labels */
+        }
+
+
+        button {
+            background-color: #007bff; /* Cor do botão */
+        }
+        footer {
+            background-color: #343a40; /* Cor de fundo do rodapé */
+            color: #ffffff; /* Cor do texto no rodapé */
+            padding: 20px 0; /* Espaçamento interno do rodapé */
+        }
+
+        /* Adicionei cor ao texto no rodapé */
+        footer p, footer h5 {
+            color: black;
+        }
+    </style>
+</head>
+
+<body>
+<section>
+    <div class="container">
+        <h2 class="d-flex justify-content-center">Adicionar Nova Modalidade</h2>
+
+        <form th:object="${requisicaoNovaModalidade}" th:action="@{/admin/adicionar}" method="post">
+
+            <div class="form-group row">
+                <label for="descricao">Descrição:</label>
+                <div class="col-sm-10">
+                    <input type="text" id="descricao" class="form-control" th:field="*{descricao}" required/>
+                    <span th:if="${#fields.hasErrors('descricao')}" class="text-danger" th:errors="*{descricao}"></span>
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <div class="col-sm-10 offset-sm-2">
+                    <button type="submit" class="btn btn-primary mt-2">Adicionar</button>
+                    <a th:href="@{/admin/dashboard}" class="btn btn-secondary mt-2" >Dashboard</a>
+                    <a th:href="@{/admin/listar}" class="btn btn-secondary mt-2" >Voltar para Lista de Clientes</a>
+                </div>
+            </div>
+
+        </form>
+    </div>
+</section>
+<!-- Adicione um espaçamento no final do conteúdo para evitar sobreposição pelo rodapé -->
+<div style="margin-bottom: 152px;"></div>
+<footer class="footer" style="background-color: #1f272d; color: white; padding: 30px 0;">
+    <!-- Conteúdo do rodapé -->
+    <div class="container">
+        <div class="row">
+            <!-- Coluna 1 - Informações da Empresa -->
+            <div class="col-md-4">
+                <h5>Informações da Empresa</h5>
+                <p>Academia Hardcore</p>
+                <p>Email: contato@hardcore.com</p>
+                <p>Contato: (11) 1234-5678</p>
+            </div>
+
+            <!-- Coluna 2 - Horário de Atendimento -->
+            <div class="col-md-4">
+                <h5>Horário de Atendimento</h5>
+                <p>Segunda a sábado</p>
+                <p>Das 8:00 às 18:00</p>
+            </div>
+
+            <!-- Coluna 3 - Mídias Sociais -->
+            <div class="col-md-4">
+                <h5>Mídias Sociais</h5>
+                <div class="midias">
+                    <a href="https://twitter.com/" target="_blank" class="social-link">
+                        <img th:src="@{/images/twitter.svg}" alt="twitter">
+                    </a>
+                    <a href="https://facebook.com/" target="_blank" class="social-link">
+                        <img th:src="@{/images/facebook.svg}" alt="facebook">
+                    </a>
+                    <a href="https://youtube.com/" target="_blank" class="social-link">
+                        <img th:src="@{/images/youtube.svg}" alt="youtube">
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</footer>
+<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.16/jquery.mask.min.js"></script>
+
+</body>
+</html>

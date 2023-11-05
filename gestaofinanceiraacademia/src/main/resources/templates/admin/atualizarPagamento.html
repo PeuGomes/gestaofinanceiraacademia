@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+  <title>Atualizar Pagamento</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" />
+</head>
+<body>
+
+<section class="container mt-5">
+  <div class="row">
+    <div class="col-md-6 offset-md-3">
+      <!-- Formulário para atualizar o pagamento -->
+      <form th:action="@{/admin/pagamentos/atualizar}" method="post" class="card p-4">
+        <h2 class="text-center mb-4">Atualizar Pagamento</h2>
+
+        <div class="form-group">
+          <label for="valor">Valor:</label>
+          <input type="number" id="valor" step="0.01" class="form-control" th:field="${requisicaoAtualizacao.valor}" th:value="${requisicaoAtualizacao.valor}" onblur="formatNumber(this)" required/>
+
+        </div>
+        <div class="form-group">
+          <label for="dataPagamento">Data Pagamento:</label>
+          <input type="date" id="dataPagamento" class="form-control" th:field="${requisicaoAtualizacao.dataPagamento}" required/>
+        </div>
+
+        <div class="form-group">
+          <label for="vencimento">Vencimento:</label>
+          <input type="date" id="vencimento" class="form-control" th:field="${requisicaoAtualizacao.vencimento}" required/>
+        </div>
+
+        <!-- Adicione um campo de seleção para escolher o cliente -->
+        <div class="form-group">
+          <label for="idCliente">Cliente:</label>
+          <select class="form-control" id="idCliente" th:field="${requisicaoAtualizacao.idCliente}" required>
+            <option th:each="cliente : ${clientes}" th:value="${cliente.id}" th:text="${cliente.id + ' - ' + cliente.nome}"></option>
+          </select>
+        </div>
+
+        <!-- Adicione outros campos do seu formulário -->
+
+        <button type="submit" class="btn btn-primary btn-block mt-4">Atualizar Pagamento</button>
+      </form>
+    </div>
+  </div>
+</section>
+
+<!-- Scripts do Bootstrap e outros scripts necessários -->
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.0.7/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+<script>
+  function formatNumber(input) {
+    // Formatar para duas casas decimais
+    input.value = parseFloat(input.value).toFixed(2);
+  }
+</script>
+</body>
+</html>
