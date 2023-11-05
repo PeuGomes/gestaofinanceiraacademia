@@ -26,7 +26,7 @@ public class Excluir {
 
     @PostMapping("/excluir")
     public String excluirCliente(@RequestParam("cpf") String cpf, Model model) {
-        // Encontrar o cliente pelo CPF usando Optional
+        // Encontrar o cliente pelo CPF usando Optional.
         Optional<Cliente> optionalCliente = clienteRepository.findByCpfIgnoreCase(cpf);
 
         if (optionalCliente.isPresent()) {
