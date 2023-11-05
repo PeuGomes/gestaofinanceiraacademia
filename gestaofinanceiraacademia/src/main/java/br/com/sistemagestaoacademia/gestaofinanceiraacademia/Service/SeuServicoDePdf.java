@@ -16,6 +16,7 @@ import java.util.Objects;
 @Service
 public class SeuServicoDePdf {
 
+    //Service utilizado para gerar o Comprovante de pagamento do cliente.
     public byte[] gerarPdf(Pagamento pagamento) {
         try (ByteArrayOutputStream baos = new ByteArrayOutputStream()) {
             Rectangle pageSize = new Rectangle(240, 400); // Tamanho personalizado
