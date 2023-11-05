@@ -36,7 +36,7 @@ public class AdminPlano {
 
     @PostMapping("/admin/cadastrar-planos")
     public String cadastrarPlanos(@ModelAttribute("planoDto") RequisicaoNovoPlano planoDto) {
-        // Converte o DTO para a entidade Planos
+        // Converte o DTO para a entidade Planos.
         Planos plano = planoDto.toPlano();
 
         // Configura a modalidade usando modalidadeId
