@@ -11,7 +11,7 @@ import java.time.LocalDate;
  * Created on ${DATE}.
  */
 public class RequisicaoNovoCliente {
-
+	//Dto de requisicaoNovoCliente
 	private Long id;
 	@NonNull
 	private String nome;
