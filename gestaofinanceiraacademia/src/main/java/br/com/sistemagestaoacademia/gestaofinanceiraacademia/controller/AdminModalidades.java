@@ -28,7 +28,7 @@ public class AdminModalidades {
     @GetMapping("/adicionar")
     public String formularioAdicaoModalidade(Model model) {
         model.addAttribute("requisicaoNovaModalidade", new RequisicaoNovaModalidade());
-        return "admin/formulario";  // Corrigido o nome da página Thymeleaf
+        return "admin/formulario";  // Corrigido o nome da página Thymeleaf.
     }
 
     @PostMapping("/adicionar")
