@@ -30,7 +30,7 @@ public class Atualizar {
 	@Autowired
 	private PlanoRepository planoRepository;
 
-	// Adicione este método para inicializar o binder
+	// Adicione este método para inicializar o binder.
 	@InitBinder
 	public void initBinder(WebDataBinder binder) {
 		binder.registerCustomEditor(String.class, new StringTrimmerEditor(true));
