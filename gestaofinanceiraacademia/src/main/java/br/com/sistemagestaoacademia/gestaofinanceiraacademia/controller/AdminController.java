@@ -38,7 +38,7 @@ public class AdminController {
         String nome = requisicaoNovoAdmin.getNome();
         String senha = requisicaoNovoAdmin.getSenha();
 
-        // Validar se o nome de usuário e a senha foram fornecidos
+        // Validar se o nome de usuário e a senha foram fornecidos.
         if (nome == null || senha == null || nome.isEmpty() || senha.isEmpty()) {
             redirectAttributes.addFlashAttribute("mensagemErro", "Nome de usuário e senha são obrigatórios");
             return "redirect:/admin/login";
