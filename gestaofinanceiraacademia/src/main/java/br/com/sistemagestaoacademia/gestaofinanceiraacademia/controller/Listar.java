@@ -18,6 +18,7 @@ import java.util.List;
 @Controller
 @RequestMapping(path = "/cadastro")
 public class Listar {
+	//Lista para os clientes mas não esta sendo utilizada.
 	@Autowired
 	private ClienteRepository clienteRepository;
 
