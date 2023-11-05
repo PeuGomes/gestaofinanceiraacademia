@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 @ControllerAdvice
 public class GlobalExceptionHandler {
 
+    //tratamento de algumas exception deixei no controller mas deveria criar uma package Exception.
     @ExceptionHandler(DataIntegrityViolationException.class)
     @ResponseStatus(HttpStatus.BAD_REQUEST)
     public String handleDataIntegrityViolationException(DataIntegrityViolationException ex, Model model) {
