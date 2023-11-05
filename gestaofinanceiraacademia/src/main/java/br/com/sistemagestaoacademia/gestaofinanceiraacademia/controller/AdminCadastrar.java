@@ -50,7 +50,7 @@ public class AdminCadastrar {
             return "admin/cadastrar";
         }
 
-        // Remover caracteres não numéricos do CPF
+        // Remover caracteres não numéricos do CPF.
         String cpfSemFormato = requisicao.getCpf().replaceAll("\\D", "");
         Optional<Cliente> clienteExistente = clienteRepository.findByCpfIgnoreCase(cpfSemFormato);
         if (clienteExistente.isPresent()) {
