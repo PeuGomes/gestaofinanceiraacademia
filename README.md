@@ -7,7 +7,7 @@ Este é um projeto de sistema de gestão de academia desenvolvido em Spring Boot
 Antes de executar o projeto, certifique-se de ter as seguintes ferramentas instaladas:
 
 - **Java JDK 17**: [Download JDK](https://www.oracle.com/java/technologies/javase-downloads.html)
-- **IntelliJ IDEA**: [Download IntelliJ IDEA](https://www.jetbrains.com/idea/)
+- **IntelliJ IDEA**: [Download IntelliJ IDEA](https://www.oracle.com/java/technologies/downloads/#java17)
 - **MySQL**: [Download MySQL](https://dev.mysql.com/downloads/)
 
 ## Configuração do Banco de Dados
