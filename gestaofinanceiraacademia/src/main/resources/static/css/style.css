@@ -1,0 +1,465 @@
+:root{
+    --primary:#101417;
+    --contrast:#B91F33;
+    --promo:#E0E34C;
+    --letter:#E1E1E1;
+}
+
+*{
+    font-family: 'Teko', sans-serif;
+    text-transform: uppercase;
+}
+
+html{
+    scroll-behavior: smooth;
+}
+
+body{
+    margin:0;
+    background: var(--primary);
+}
+
+img{
+    display: block;
+}
+
+
+
+h2{
+    color: var(--letter);
+    font-size: 40px;
+    font-weight: bold;
+    margin: 0;
+    line-height: 57px;
+}
+
+p{
+    color: var(--letter);
+    font-size: 18px;
+    line-height: 120%;
+}
+
+.header{
+    background-color: rgba(0, 0, 0, 0.5);
+    width: 100%;
+    height:auto;
+    padding:16px 0;
+    position:fixed;
+    z-index: 100;
+    backdrop-filter: blur(3px);
+}
+
+.container{
+
+    width: 1140px;
+    margin:0 auto;
+
+}
+
+.header .container{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.menu a{
+    color:var(--letter);
+    font-size: 18px;
+    font-weight: bold;
+    text-decoration: none;
+    margin-left: 110px;
+}
+
+.menu a:hover{
+    color: var(--contrast);
+}
+
+.bx-wrapper{
+    border: none;
+    box-shadow: none;
+}
+
+.bg-1{
+    background-image: url(../images/background.jpg);
+}
+
+.bg-2{
+    background-image: url(../images/background-2.jpg);
+}
+
+.hero-section{
+    height: 625px;
+    background-size: cover;
+    display: flex;
+    align-items: center;
+}
+
+.hero-section .container{
+    position: relative;
+    top:53px;
+}
+
+.hero-section h1{
+    color: var(--letter);
+    font-size: 96px;
+    font-weight: bold;
+    margin: 0;
+    max-width: 946px;
+    line-height: 90%;
+    margin-bottom: 21px;
+}
+
+.hero-section p{
+    color:var(--letter);
+    font-size: 24px;
+    max-width: 644px;
+    margin-bottom: 21px;
+    line-height: 120%;
+}
+
+.hero-section a{
+    background-color:var(--contrast);
+    text-decoration: none;
+    color: var(--letter);
+    font-size: 18px;
+    border-radius: 3px;
+    padding: 13px 44px 9px 44px;
+    display: inline-block;
+}
+
+.nossa-academia{
+    display: flex;
+    align-items: center;
+    margin-top: 100px;
+    margin-bottom: 100px;
+    column-gap: 24px;
+
+}
+
+.nossa-academia p{
+    color: var(--letter);
+    font-size: 18px;
+    line-height: 25px;
+}
+
+
+.faca-parte{
+    background-color: var(--letter);
+    padding: 37px 0;
+}
+
+.faca-parte .container{
+    display: flex;
+    position: relative;
+}
+
+.faca-parte h2{
+    color:#222222;
+}
+
+.faca-parte p{
+    color:#666666;
+    font-size: 18px;
+    line-height: 22px;
+    margin-bottom: 0;
+    max-width: 849px;
+}
+
+.atleta-img{
+    position: absolute;
+    bottom: -37px;
+    right: 0;
+}
+
+
+
+.planos{
+    background-image: url("../images/bg-planos.jpg");
+    background-size: cover;
+    text-align: center;
+    padding: 60px 0;
+}
+
+.flex-card{
+    display: flex;
+    column-gap: 24px;
+    margin-top: 30px;
+}
+
+.card-plano{
+    border: solid 1px #E1E1E1;
+    border-radius: 3px;
+    width: 380px;
+    padding: 30px;
+    background-color: rgba(0, 0, 0, 0.3);
+    transition: 0.2s !important;
+
+}
+
+.card-plano:hover{
+    background-color:rgba(0, 0, 0, 0.5) ;
+    transform: scale(1.05) !important;
+}
+
+h3{
+    color: var(--letter);
+    margin: 0;
+    font-size: 32px;
+    font-weight: bold;
+}
+
+.card-plano p{
+    font-size: 20px;
+}
+
+
+span{
+    color: var(--letter);
+    margin: 0;
+    font-size: 32px;
+    font-weight: bold;
+}
+
+ul{
+    text-align: left;
+    margin-left: 50px;
+    list-style-position: inside;
+    color: var(--letter);
+    font-size: 20px;
+    height: 145px;
+}
+
+
+.destaque{
+    border: solid 3px var(--contrast);
+}
+
+.gold{
+    color: var(--promo);
+}
+
+.silver{
+    color: #c0c0c0;
+}
+
+.plat{
+    color: #a0b2c6;
+}
+
+.btn{
+    border-radius: 3px;
+    display: inline-block;
+    color: var(--letter);
+    font-size: 18px;
+    text-decoration: none;
+    padding: 10px 45px 7px 45px;
+    border: 2px solid transparent;
+    transition: 0.3s;
+    background-color: transparent;
+    cursor: pointer;
+}
+
+.btn-outline{
+    border: solid 2px var(--contrast);
+}
+
+.btn-fill{
+    background-color: var(--contrast);
+}
+
+.btn-block{
+    display:block;
+}
+
+.btn:hover{
+    border: 2px solid var(--letter);
+    background-color: black;
+}
+
+.fale-conosco{
+    padding: 100px 0;
+    display: flex;
+    justify-content: space-between;
+}
+
+.conteudo-form, .map, iframe{
+    width: 100%;
+}
+
+
+.rodape{
+    background-color: black;
+    padding: 15px 194px 10px 194px;
+}
+
+footer .container{
+    display: flex;
+    justify-content: space-between;
+}
+
+.texto{
+    display: flex;
+    flex-direction: column;
+    max-width: 300px;
+    margin-bottom: 25px;
+}
+
+.rodape h3{
+    font-size: 24px;
+    margin-bottom: 10px;
+}
+
+.rodape p{
+    margin: 12px 0;
+}
+
+.midias{
+    display: flex;
+    justify-content: center;
+    max-width: 200px;
+    column-gap: 10px;
+    margin-top: 12px;
+}
+
+#nossa-academia{
+    scroll-margin-top: 150px;
+
+}
+
+#planos{
+    scroll-margin-top: 30px;
+}
+
+@media (max-width: 1140px){
+    .container{
+        width: 100%;
+        padding-left: 15px;
+        padding-right: 15px;
+        box-sizing: border-box;
+    }
+
+    .conteudo-faca-parte{
+        width: calc(100% - 195px);
+    }
+
+    .fale-conosco{
+        flex-direction: column;
+        row-gap: 30px;
+        align-items: center;
+    }
+
+
+    .conteudo-form, .map, iframe{
+        width: 100%;
+    }
+}
+
+@media (max-width:950px){
+    .menu{
+        transform: translateX(-100%);
+        transition: 0.8s;
+        height: 100vh;
+        width: 75%;
+        background-color: var(--contrast);
+        position: fixed;
+        left: 0;
+        top: 0;
+    }
+
+    .menu-open{
+
+        transform: translateX(0);
+    }
+
+    .bar{
+        width: 40px;
+        height: 3px;
+        margin-bottom: 3px;
+        background-color: white;
+        transition: 0.5s;
+    }
+
+    .x .bar:first-child{
+        transform: rotate(45deg) translate(8px, 2px);
+    }
+
+    .x .bar:nth-child(2){
+        opacity: 0;
+        transform: translateX(-100%);
+    }
+
+    .x .bar:last-child{
+        transform: rotate(-45deg) translate(6px, 0);
+    }
+
+    .menu a {
+        display: block;
+        margin: 0;
+        padding: 40px 20px;
+        text-align: center;
+    }
+
+    .menu a:hover{
+        background-color: var(--primary);
+        color: var(--letter);
+    }
+
+
+
+    .hero-section h1{
+        font-size: 36px;
+    }
+
+    .hero-section p{
+        font-size: 20px;
+    }
+
+    .nossa-academia{
+        flex-direction: column;
+        row-gap: 24px;
+    }
+
+    .imagem-aluno img{
+        max-width: 100%;
+    }
+
+    .flex-card{
+        flex-direction: column;
+        align-items: center;
+        row-gap: 24px;
+    }
+
+    .card-plano{
+        width: 400px;
+    }
+
+    h2{
+        font-size: 32px;
+    }
+
+    h3{
+        font-size: 24px;
+    }
+
+    .rodape{
+        padding: 15px 15px 10px 15px;
+    }
+
+    footer .container{
+        flex-direction: column;
+    }
+
+    @media (max-width:560px){
+
+        .atleta-img{
+            display: none;
+        }
+
+        .conteudo-faca-parte{
+            width: 100%;
+        }
+        .card-plano{
+            width: 300px;
+        }
+    }
+}
