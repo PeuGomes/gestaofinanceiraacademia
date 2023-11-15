@@ -26,7 +26,7 @@ public class SeuServicoDePdf {
             document.open();
 
             // Adicionando Fonte para o Nome da Academia
-            Font fontNomeAcademia = new Font(Font.FontFamily.TIMES_ROMAN, 16, Font.BOLD);
+            Font fontNomeAcademia = new Font(Font.FontFamily.TIMES_ROMAN, 14, Font.BOLD);
             Paragraph nomeAcademia = new Paragraph("Academia Hardcore", fontNomeAcademia);
             nomeAcademia.setAlignment(Paragraph.ALIGN_LEFT); // Centralizando
             document.add(nomeAcademia);
@@ -37,14 +37,14 @@ public class SeuServicoDePdf {
             document.add(cnpjAcademia);
 
             // Adicionando Endereço, Email e Contato
-            Font fontInformacoes = new Font(Font.FontFamily.TIMES_ROMAN, 12);
+            Font fontInformacoes = new Font(Font.FontFamily.TIMES_ROMAN, 10);
 
             document.add(new Paragraph("Endereço: Av. Rio Branco, 185 - Centro, Rio de Janeiro - RJ, 20040-007", fontInformacoes));
             document.add(new Paragraph("Email: contato@hardcore.com", fontInformacoes));
             document.add(new Paragraph("Contato: (11) 1234-5678", fontInformacoes));
 
             // Adicionando Fonte Padrão para o Comprovante de Pagamento
-            Font fontComprovante = new Font(Font.FontFamily.TIMES_ROMAN, 12);
+            Font fontComprovante = new Font(Font.FontFamily.TIMES_ROMAN, 10);
 
             document.add(new Paragraph(" "));
             document.add(new Paragraph("Comprovante de Pagamento", fontComprovante));
